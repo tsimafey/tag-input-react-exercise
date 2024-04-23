@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './index.module.css';
 
@@ -54,7 +55,11 @@ export function TagInput({
   };
 
   return (
-    <div className={styles.tagInputContainer} data-testid="tag-input">
+    <div
+      className={styles.tagInputContainer}
+      id="tag-input-container"
+      data-testid="tag-input"
+    >
       <TextInput
         placeholder={placeholder}
         searchValue={searchValue}
@@ -62,18 +67,19 @@ export function TagInput({
         handleInputChange={handleInputChange}
         textInputStyles={textInputStyles}
       />
-      <div className={styles.tagInputBottomContainer}>
-        {searchValue ? (
+      {searchValue &&
+        createPortal(
           <Suggestions
             list={sortedSuggestions}
             chosenTags={tags}
             handleSaveButtonClick={handleSaveButtonClick}
             setSearchValue={setSearchValue}
             saveButtonStyles={saveButtonStyles}
-          />
-        ) : (
-          <Tags tags={tags} handleRemoveTagClick={handleRemoveTagClick} />
+          />,
+          document.getElementById('tag-input-container'),
         )}
+      <div className={styles.tagInputBottomContainer}>
+        <Tags tags={tags} handleRemoveTagClick={handleRemoveTagClick} />
       </div>
     </div>
   );

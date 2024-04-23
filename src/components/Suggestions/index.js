@@ -39,7 +39,10 @@ export function Suggestions({
   };
 
   return (
-    <div data-testid="suggestions-container">
+    <div
+      className={styles.suggestionsContainer}
+      data-testid="suggestions-container"
+    >
       {list.map((suggestion) => (
         <SuggestionItem
           key={suggestion.id}

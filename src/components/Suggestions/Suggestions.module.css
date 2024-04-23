@@ -1,3 +1,9 @@
+.suggestionsContainer {
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
 .suggestionsSaveButton {
   background-color: #26589f;
   color: #fff;
