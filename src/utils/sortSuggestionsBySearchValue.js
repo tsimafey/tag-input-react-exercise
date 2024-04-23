@@ -3,16 +3,13 @@ export const sortSuggestionsBySearchValue = (searchValue, tags) => {
   const searchValueLowerCase = searchValue.toLowerCase();
 
   return tagsCopy.sort((a, b) => {
-    if (
-      a.title.toLowerCase().includes(searchValueLowerCase) &&
-      b.title.toLowerCase().includes(searchValueLowerCase)
-    ) {
-      return 0;
-    }
-    if (a.title.toLowerCase().includes(searchValueLowerCase)) {
+    const aMatch = a.title.toLowerCase().includes(searchValueLowerCase);
+    const bMatch = b.title.toLowerCase().includes(searchValueLowerCase);
+
+    if (aMatch && !bMatch) {
       return -1;
     }
-    if (b.title.toLowerCase().includes(searchValueLowerCase)) {
+    if (!aMatch && bMatch) {
       return 1;
     }
     return 0;

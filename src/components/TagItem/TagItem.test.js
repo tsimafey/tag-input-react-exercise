@@ -5,7 +5,11 @@ import '@testing-library/jest-dom';
 import { TagItem } from './index';
 
 describe('TagItem Component', () => {
-  const title = 'Tag Title';
+  const tag = {
+    id: '1',
+    title: 'Tag Title',
+    score: 0
+  };
   const handleRemoveTagClick = jest.fn();
 
   afterEach(() => {
@@ -14,16 +18,16 @@ describe('TagItem Component', () => {
 
   test('renders tag title', () => {
     const { getByText } = render(
-      <TagItem title={title} handleRemoveTagClick={handleRemoveTagClick} />,
+      <TagItem tag={tag} handleRemoveTagClick={handleRemoveTagClick} />,
     );
-    expect(getByText(title)).toBeInTheDocument();
+    expect(getByText(tag.title)).toBeInTheDocument();
   });
 
   test('calls handleRemoveTagClick when X button is clicked', () => {
     const { getByLabelText } = render(
-      <TagItem title={title} handleRemoveTagClick={handleRemoveTagClick} />,
+      <TagItem tag={tag} handleRemoveTagClick={handleRemoveTagClick} />,
     );
     fireEvent.click(getByLabelText('Remove tag'));
-    expect(handleRemoveTagClick).toHaveBeenCalledWith(title);
+    expect(handleRemoveTagClick).toHaveBeenCalledWith(tag.id);
   });
 });

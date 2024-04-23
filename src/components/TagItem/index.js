@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import styles from './TagItem.module.css';
 
 TagItem.propTypes = {
-  title: PropTypes.string.isRequired,
+  tag: PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
   handleRemoveTagClick: PropTypes.func.isRequired,
 };
 
-export function TagItem({ title, handleRemoveTagClick }) {
+export function TagItem({ tag, handleRemoveTagClick }) {
   const handleXClick = () => {
-    handleRemoveTagClick(title);
+    handleRemoveTagClick(tag.id);
   };
 
   return (
     <div className={styles.tag} data-testid="tag-item">
-      <span className={styles.tagTitle}>{title}</span>
+      <span className={styles.tagTitle}>{tag.title}</span>
       <button
         className={styles.tagXButton}
         onClick={handleXClick}

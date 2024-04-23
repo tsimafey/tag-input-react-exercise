@@ -3,30 +3,30 @@ import PropTypes from 'prop-types';
 import styles from './SuggestionItem.module.css';
 
 SuggestionItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired,
-  chosenTags: PropTypes.arrayOf(PropTypes.string),
+  suggestion: PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+  chosenTags: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+  ),
   setChosenTags: PropTypes.func.isRequired,
 };
 
 export function SuggestionItem({
-  title,
-  score,
+  suggestion,
   chosenTags = [],
   setChosenTags,
 }) {
-  const checked = chosenTags.includes(title);
+  const checked = chosenTags.find((tag) => tag.id === suggestion.id);
 
   const handleCheckboxChange = () => {
     if (checked) {
-      removeTag(title);
+      removeTag(suggestion.id);
     } else {
-      addTag(title);
+      addTag(suggestion);
     }
   };
 
   const removeTag = (tagToRemove) => {
-    const newTags = chosenTags.filter((tag) => tag !== tagToRemove);
+    const newTags = chosenTags.filter((tag) => tag.id !== tagToRemove);
     setChosenTags(newTags);
   };
 
@@ -38,18 +38,18 @@ export function SuggestionItem({
   return (
     <div
       className={styles.suggestionItem}
-      data-testid={`suggestion-item-${title}`}
+      data-testid={`suggestion-item-${suggestion.id}`}
     >
       <input
         type="checkbox"
-        id={title}
+        id={suggestion.id}
         checked={checked}
         onChange={handleCheckboxChange}
       />
-      <label htmlFor={title} className={styles.suggestionItemTitle}>
-        {title}
+      <label htmlFor={suggestion.id} className={styles.suggestionItemTitle}>
+        {suggestion.title}
       </label>
-      <span>+{score}</span>
+      <span>+{suggestion.score}</span>
     </div>
   );
 }

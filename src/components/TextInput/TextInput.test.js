@@ -5,49 +5,76 @@ import '@testing-library/jest-dom';
 import { TextInput } from './index';
 
 describe('TextInput Component', () => {
-  test('renders the TextInput component', () => {
-    const { getByLabelText } = render(
-      <TextInput searchValue="" setSearchValue={() => null} />,
-    );
-    const textInputElement = getByLabelText('Enter Tag name');
-    expect(textInputElement).toBeInTheDocument();
-  });
+  const placeholder = 'Enter Tag name';
+  const searchValue = 'SearchValue';
+  const handleSearchReset = jest.fn();
+  const handleInputChange = jest.fn();
+  const textInputStyles = { color: 'red' };
 
-  test('calls onChange handler', () => {
-    const onChangeMock = jest.fn();
-    const { getByLabelText } = render(
-      <TextInput searchValue="" setSearchValue={onChangeMock} />,
-    );
-    const textInputElement = getByLabelText('Enter Tag name');
-    fireEvent.change(textInputElement, { target: { value: 'Test input' } });
-    expect(onChangeMock).toHaveBeenCalledWith('Test input');
-  });
-
-  test('placeholder prop', () => {
+  test('renders placeholder correctly', () => {
     const { getByPlaceholderText } = render(
       <TextInput
-        searchValue=""
-        setSearchValue={() => null}
-        placeholder="Test placeholder"
-      />,
+        placeholder={placeholder}
+        searchValue={searchValue}
+        handleSearchReset={handleSearchReset}
+        handleInputChange={handleInputChange}
+        textInputStyles={textInputStyles}
+      />
     );
-    const textInputElement = getByPlaceholderText('Test placeholder');
-    expect(textInputElement).toBeInTheDocument();
+    expect(getByPlaceholderText(placeholder)).toBeInTheDocument();
   });
 
-  test('clearButton is absent if searchValue is empty string', () => {
-    const { queryByLabelText } = render(
-      <TextInput searchValue="" setSearchValue={() => null} />,
+  test('renders search icon correctly', () => {
+    const { getByAltText } = render(
+      <TextInput
+        placeholder={placeholder}
+        searchValue={searchValue}
+        handleSearchReset={handleSearchReset}
+        handleInputChange={handleInputChange}
+        textInputStyles={textInputStyles}
+      />
     );
-    const buttonElement = queryByLabelText('Reset button');
-    expect(buttonElement).not.toBeInTheDocument();
+    expect(getByAltText('Search Icon')).toBeInTheDocument();
   });
 
-  test('clearButton is present if searchValue is not empty', () => {
+  test('renders text input with value correctly', () => {
+    const { getByDisplayValue } = render(
+      <TextInput
+        placeholder={placeholder}
+        searchValue={searchValue}
+        handleSearchReset={handleSearchReset}
+        handleInputChange={handleInputChange}
+        textInputStyles={textInputStyles}
+      />
+    );
+    expect(getByDisplayValue(searchValue)).toBeInTheDocument();
+  });
+
+  test('calls handleSearchReset function when clear button is clicked', () => {
     const { getByLabelText } = render(
-      <TextInput searchValue="test value" setSearchValue={() => null} />,
+      <TextInput
+        placeholder={placeholder}
+        searchValue={searchValue}
+        handleSearchReset={handleSearchReset}
+        handleInputChange={handleInputChange}
+        textInputStyles={textInputStyles}
+      />
     );
-    const buttonElement = getByLabelText('Reset button');
-    expect(buttonElement).toBeInTheDocument();
+    fireEvent.click(getByLabelText('Reset button'));
+    expect(handleSearchReset).toHaveBeenCalledTimes(1);
+  });
+
+  test('calls handleInputChange function when input value is changed', () => {
+    const { getByPlaceholderText } = render(
+      <TextInput
+        placeholder={placeholder}
+        searchValue={searchValue}
+        handleSearchReset={handleSearchReset}
+        handleInputChange={handleInputChange}
+        textInputStyles={textInputStyles}
+      />
+    );
+    fireEvent.change(getByPlaceholderText(placeholder), { target: { value: 'New Value' } });
+    expect(handleInputChange).toHaveBeenCalledTimes(1);
   });
 });
