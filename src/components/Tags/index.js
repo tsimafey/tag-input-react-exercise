@@ -5,7 +5,13 @@ import styles from './Tags.module.css';
 import { TagItem } from '../TagItem';
 
 Tags.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.string),
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
+  ),
   handleRemoveTagClick: PropTypes.func.isRequired,
 };
 
@@ -14,8 +20,8 @@ export function Tags({ tags = [], handleRemoveTagClick }) {
     <div className={styles.tagsContainer} data-testid="tags-container">
       {tags.map((tag) => (
         <TagItem
-          title={tag}
-          key={tag}
+          tag={tag}
+          key={tag.id}
           handleRemoveTagClick={handleRemoveTagClick}
         />
       ))}

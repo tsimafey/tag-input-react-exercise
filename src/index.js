@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './index.module.css';
 
@@ -9,9 +10,19 @@ import { Tags } from './components/Tags';
 import { sortSuggestionsBySearchValue } from './utils/sortSuggestionsBySearchValue';
 
 TagInput.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.string),
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
+  ),
   suggestions: PropTypes.arrayOf(
-    PropTypes.shape({ title: PropTypes.string, score: PropTypes.number }),
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
   ),
   handleSaveButtonClick: PropTypes.func.isRequired,
   handleRemoveTagClick: PropTypes.func.isRequired,
@@ -32,36 +43,43 @@ export function TagInput({
   const [searchValue, setSearchValue] = useState('');
   const [sortedSuggestions, setSortedSuggestions] = useState(suggestions);
 
-  useEffect(() => {
-    if (searchValue) {
-      setSortedSuggestions(
-        sortSuggestionsBySearchValue(searchValue, suggestions),
-      );
-    } else {
-      setSortedSuggestions([]);
-    }
-  }, [searchValue]);
+  const handleSearchReset = () => {
+    setSearchValue('');
+  };
+
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+    setSortedSuggestions(
+      sortSuggestionsBySearchValue(e.target.value, suggestions),
+    );
+  };
 
   return (
-    <div className={styles.tagInputContainer} data-testid="tag-input">
+    <div
+      className={styles.tagInputContainer}
+      id="tag-input-container"
+      data-testid="tag-input"
+    >
       <TextInput
         placeholder={placeholder}
         searchValue={searchValue}
-        setSearchValue={setSearchValue}
+        handleSearchReset={handleSearchReset}
+        handleInputChange={handleInputChange}
         textInputStyles={textInputStyles}
       />
-      <div className={styles.tagInputBottomContainer}>
-        {searchValue ? (
+      {searchValue &&
+        createPortal(
           <Suggestions
             list={sortedSuggestions}
             chosenTags={tags}
             handleSaveButtonClick={handleSaveButtonClick}
             setSearchValue={setSearchValue}
             saveButtonStyles={saveButtonStyles}
-          />
-        ) : (
-          <Tags tags={tags} handleRemoveTagClick={handleRemoveTagClick} />
+          />,
+          document.getElementById('tag-input-container'),
         )}
+      <div className={styles.tagInputBottomContainer}>
+        <Tags tags={tags} handleRemoveTagClick={handleRemoveTagClick} />
       </div>
     </div>
   );

@@ -3,30 +3,34 @@ import PropTypes from 'prop-types';
 import styles from './SuggestionItem.module.css';
 
 SuggestionItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired,
-  chosenTags: PropTypes.arrayOf(PropTypes.string),
+  suggestion: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+  }),
+  chosenTags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
+  ),
   setChosenTags: PropTypes.func.isRequired,
 };
 
-export function SuggestionItem({
-  title,
-  score,
-  chosenTags = [],
-  setChosenTags,
-}) {
-  const checked = chosenTags.includes(title);
+export function SuggestionItem({ suggestion, chosenTags = [], setChosenTags }) {
+  const isChecked = chosenTags.some((tag) => tag.id === suggestion.id) || false;
 
   const handleCheckboxChange = () => {
-    if (checked) {
-      removeTag(title);
+    if (isChecked) {
+      removeTag(suggestion.id);
     } else {
-      addTag(title);
+      addTag(suggestion);
     }
   };
 
   const removeTag = (tagToRemove) => {
-    const newTags = chosenTags.filter((tag) => tag !== tagToRemove);
+    const newTags = chosenTags.filter((tag) => tag.id !== tagToRemove);
     setChosenTags(newTags);
   };
 
@@ -38,18 +42,18 @@ export function SuggestionItem({
   return (
     <div
       className={styles.suggestionItem}
-      data-testid={`suggestion-item-${title}`}
+      data-testid={`suggestion-item-${suggestion.id}`}
     >
       <input
         type="checkbox"
-        id={title}
-        checked={checked}
+        id={suggestion.id}
+        checked={isChecked}
         onChange={handleCheckboxChange}
       />
-      <label htmlFor={title} className={styles.suggestionItemTitle}>
-        {title}
+      <label htmlFor={suggestion.id} className={styles.suggestionItemTitle}>
+        {suggestion.title}
       </label>
-      <span>+{score}</span>
+      <span>+{suggestion.score}</span>
     </div>
   );
 }

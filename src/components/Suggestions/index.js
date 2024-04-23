@@ -6,9 +6,19 @@ import { SuggestionItem } from '../SuggestionItem';
 
 Suggestions.propTypes = {
   list: PropTypes.arrayOf(
-    PropTypes.shape({ title: PropTypes.string, score: PropTypes.number }),
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
   ),
-  chosenTags: PropTypes.arrayOf(PropTypes.string),
+  chosenTags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
+  ),
   setSearchValue: PropTypes.func.isRequired,
   handleSaveButtonClick: PropTypes.func.isRequired,
   saveButtonStyles: PropTypes.objectOf(PropTypes.string),
@@ -29,12 +39,14 @@ export function Suggestions({
   };
 
   return (
-    <div data-testid="suggestions-container">
+    <div
+      className={styles.suggestionsContainer}
+      data-testid="suggestions-container"
+    >
       {list.map((suggestion) => (
         <SuggestionItem
-          key={suggestion.title}
-          title={suggestion.title}
-          score={suggestion.score}
+          key={suggestion.id}
+          suggestion={suggestion}
           chosenTags={newChosenTags}
           setChosenTags={setNewChosenTags}
         />

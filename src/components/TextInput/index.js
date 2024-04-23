@@ -6,7 +6,8 @@ import searchIcon from '../../assets/search.svg';
 
 TextInput.propTypes = {
   searchValue: PropTypes.string.isRequired,
-  setSearchValue: PropTypes.func.isRequired,
+  handleSearchReset: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   textInputStyles: PropTypes.objectOf(PropTypes.string),
 };
@@ -14,13 +15,10 @@ TextInput.propTypes = {
 export function TextInput({
   placeholder = 'Enter Tag name',
   searchValue,
-  setSearchValue,
+  handleSearchReset,
+  handleInputChange,
   textInputStyles,
 }) {
-  const handleSearchReset = () => {
-    setSearchValue('');
-  };
-
   return (
     <div className={styles.textInputContainer}>
       <div className={styles.searchIconWrapper}>
@@ -31,7 +29,7 @@ export function TextInput({
         placeholder={placeholder}
         aria-label={placeholder}
         value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={handleInputChange}
         className={styles.textInput}
         style={textInputStyles}
       />

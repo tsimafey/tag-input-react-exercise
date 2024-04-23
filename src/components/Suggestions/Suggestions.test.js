@@ -5,11 +5,11 @@ import '@testing-library/jest-dom';
 import { Suggestions } from './index';
 
 const mockSuggestions = [
-  { title: 'Tag1', score: 1 },
-  { title: 'Tag2', score: 2 },
+  { id: '1', title: 'Tag1', score: 1 },
+  { id: '2', title: 'Tag2', score: 2 },
 ];
 
-const mockChosenTags = ['Tag1'];
+const mockChosenTags = [{ id: '1', title: 'Tag1', score: 1 }];
 
 describe('Suggestions Component', () => {
   test('renders suggestions correctly', () => {
@@ -25,7 +25,7 @@ describe('Suggestions Component', () => {
 
     mockSuggestions.forEach((suggestion) => {
       expect(
-        getByTestId(`suggestion-item-${suggestion.title}`),
+        getByTestId(`suggestion-item-${suggestion.id}`),
       ).toBeInTheDocument();
     });
   });
