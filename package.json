@@ -17,7 +17,8 @@
     "test:watch": "react-scripts test --env=jsdom --coverage --collectCoverageFrom=src/components/**/*.js",
     "test:build": "run-s build",
     "prepublish": "npm run build",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "prettier": "npx prettier --write ."
   },
   "keywords": [],
   "author": "",
