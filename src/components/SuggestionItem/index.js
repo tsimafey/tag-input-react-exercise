@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './SuggestionItem.module.css';
 
 export function SuggestionItem({ title, score, chosenTags, setChosenTags }) {
   const checked = chosenTags.includes(title);
@@ -14,13 +15,13 @@ export function SuggestionItem({ title, score, chosenTags, setChosenTags }) {
   const handleCheckboxChange = () => (checked ? removeTag() : addTag());
 
   return (
-    <div>
+    <div className={styles.suggestionItem}>
       <input
         type="checkbox"
         checked={checked}
         onChange={handleCheckboxChange}
       />
-      <span>{title}</span>
+      <span className={styles.suggestionItemTitle}>{title}</span>
       <span>+{score}</span>
     </div>
   );

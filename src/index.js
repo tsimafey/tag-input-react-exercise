@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
 
-import { TextInput } from './components/TextInput/TextInput';
+import { TextInput } from './components/TextInput';
 import { Suggestions } from './components/Suggestions';
 import { Tag } from './components/Tag';
 
@@ -26,7 +26,7 @@ export function TagInput({ allTags, placeholder, textInputStyles }) {
         setSearchValue={setSearchValue}
         textInputStyles={textInputStyles}
       />
-      <div>
+      <div className={styles.tagInputBottomContainer}>
         {searchValue ? (
           <Suggestions
             allTags={sortedTags}

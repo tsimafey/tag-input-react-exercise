@@ -2,3 +2,9 @@
   position: relative;
   width: 100%;
 }
+
+.tagInputBottomContainer {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}

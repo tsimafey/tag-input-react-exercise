@@ -1,0 +1,15 @@
+.suggestionItem {
+  display: grid;
+  grid-template-columns: 20px calc(100% - 50px) 30px;
+  grid-gap: 8px;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.suggestionItemTitle {
+  display: inline-block;
+  text-wrap: nowrap;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

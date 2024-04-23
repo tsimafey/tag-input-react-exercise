@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { SuggestionItem } from './SuggestionItem';
+import styles from './Suggestions.module.css';
+
+import { SuggestionItem } from '../SuggestionItem';
 
 export function Suggestions({
   allTags,
@@ -25,7 +27,7 @@ export function Suggestions({
           setChosenTags={setNewChosenTags}
         />
       ))}
-      <button onClick={handleButtonClick}>Zapisz</button>
+      <button onClick={handleButtonClick} className={styles.suggestionsSaveButton}>Zapisz</button>
     </div>
   );
 }
