@@ -27,7 +27,12 @@ export function Suggestions({
           setChosenTags={setNewChosenTags}
         />
       ))}
-      <button onClick={handleButtonClick} className={styles.suggestionsSaveButton}>Zapisz</button>
+      <button
+        onClick={handleButtonClick}
+        className={styles.suggestionsSaveButton}
+      >
+        Zapisz
+      </button>
     </div>
   );
 }

@@ -1,11 +1,11 @@
 .suggestionsSaveButton {
-  background-color: #26589F;
+  background-color: #26589f;
   color: #fff;
   border: medium none;
-  border-radius: 5px;
+  border-radius: 10px;
   border-spacing: 0;
-  font-size: 12px;
-  line-height: 12px;
+  font-size: 14px;
+  line-height: 14px;
   font-weight: normal;
   list-style: none outside none;
   margin: 0;
@@ -14,5 +14,5 @@
   text-decoration: none;
   text-indent: 0;
   width: 100%;
-  height: 2rem;
+  height: 2.5rem;
 }

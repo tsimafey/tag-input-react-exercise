@@ -7,6 +7,10 @@ export function TextInput({
   setSearchValue,
   textInputStyles,
 }) {
+  const handleSearchReset = () => {
+    setSearchValue('');
+  };
+
   return (
     <div className={styles.textInputContainer}>
       <input
@@ -20,7 +24,7 @@ export function TextInput({
       />
       {searchValue ? (
         <div className={styles.clearButtonWrapper}>
-          <button className={styles.clearButton} onClick={() => null} />
+          <button className={styles.clearButton} onClick={handleSearchReset} />
         </div>
       ) : (
         false
