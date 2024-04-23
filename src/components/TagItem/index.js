@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './TagItem.module.css';
 
 TagItem.propTypes = {
@@ -12,9 +13,13 @@ export function TagItem({ title, handleRemoveTagClick }) {
   };
 
   return (
-    <div className={styles.tag}>
+    <div className={styles.tag} data-testid="tag-item">
       <span className={styles.tagTitle}>{title}</span>
-      <button className={styles.tagXButton} onClick={handleXClick} />
+      <button
+        className={styles.tagXButton}
+        onClick={handleXClick}
+        aria-label="Remove tag"
+      />
     </div>
   );
 }

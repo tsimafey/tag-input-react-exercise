@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import external from 'rollup-plugin-peer-deps-external';
+import image from '@rollup/plugin-image';
 
 const packageJson = require('./package.json');
 
@@ -22,6 +23,7 @@ export default [
         babelHelpers: 'bundled',
       }),
       postcss(),
+      image(),
       external(),
     ],
   },

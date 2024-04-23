@@ -9,12 +9,15 @@ import { Tags } from './components/Tags';
 import { sortSuggestionsBySearchValue } from './utils/sortSuggestionsBySearchValue';
 
 TagInput.propTypes = {
-  tags: PropTypes.arrayOf(string),
-  suggestions: PropTypes.arrayOf(shape({ title: string, score: number })),
+  tags: PropTypes.arrayOf(PropTypes.string),
+  suggestions: PropTypes.arrayOf(
+    PropTypes.shape({ title: PropTypes.string, score: PropTypes.number }),
+  ),
   handleSaveButtonClick: PropTypes.func.isRequired,
   handleRemoveTagClick: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   textInputStyles: PropTypes.shape(),
+  saveButtonStyles: PropTypes.shape(),
 };
 
 export function TagInput({
@@ -24,20 +27,23 @@ export function TagInput({
   handleRemoveTagClick,
   placeholder = '',
   textInputStyles = {},
+  saveButtonStyles = {},
 }) {
   const [searchValue, setSearchValue] = useState('');
   const [sortedSuggestions, setSortedSuggestions] = useState(suggestions);
 
   useEffect(() => {
     if (searchValue) {
-      setSortedSuggestions([
-        ...sortSuggestionsBySearchValue(searchValue, suggestions),
-      ]);
+      setSortedSuggestions(
+        sortSuggestionsBySearchValue(searchValue, suggestions),
+      );
+    } else {
+      setSortedSuggestions([]);
     }
   }, [searchValue]);
 
   return (
-    <div className={styles.tagInputContainer}>
+    <div className={styles.tagInputContainer} data-testid="tag-input">
       <TextInput
         placeholder={placeholder}
         searchValue={searchValue}
@@ -51,6 +57,7 @@ export function TagInput({
             chosenTags={tags}
             handleSaveButtonClick={handleSaveButtonClick}
             setSearchValue={setSearchValue}
+            saveButtonStyles={saveButtonStyles}
           />
         ) : (
           <Tags tags={tags} handleRemoveTagClick={handleRemoveTagClick} />

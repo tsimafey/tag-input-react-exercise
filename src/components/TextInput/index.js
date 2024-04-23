@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TextInput.module.css';
 
+import searchIcon from '../../assets/search.svg';
+
 TextInput.propTypes = {
   searchValue: PropTypes.string.isRequired,
   setSearchValue: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  textInputStyles: PropTypes.shape(),
+  textInputStyles: PropTypes.objectOf(PropTypes.string),
 };
 
 export function TextInput({
-  placeholder,
+  placeholder = 'Enter Tag name',
   searchValue,
   setSearchValue,
   textInputStyles,
@@ -21,6 +23,9 @@ export function TextInput({
 
   return (
     <div className={styles.textInputContainer}>
+      <div className={styles.searchIconWrapper}>
+        <img src={searchIcon} alt="Search Icon" />
+      </div>
       <input
         type="text"
         placeholder={placeholder}
@@ -30,12 +35,14 @@ export function TextInput({
         className={styles.textInput}
         style={textInputStyles}
       />
-      {searchValue ? (
+      {searchValue && (
         <div className={styles.clearButtonWrapper}>
-          <button className={styles.clearButton} onClick={handleSearchReset} />
+          <button
+            className={styles.clearButton}
+            onClick={handleSearchReset}
+            aria-label="Reset button"
+          />
         </div>
-      ) : (
-        false
       )}
     </div>
   );
