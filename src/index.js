@@ -17,6 +17,7 @@ TagInput.propTypes = {
   handleRemoveTagClick: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   textInputStyles: PropTypes.shape(),
+  saveButtonStyles: PropTypes.shape(),
 };
 
 export function TagInput({
@@ -26,6 +27,7 @@ export function TagInput({
   handleRemoveTagClick,
   placeholder = '',
   textInputStyles = {},
+  saveButtonStyles = {},
 }) {
   const [searchValue, setSearchValue] = useState('');
   const [sortedSuggestions, setSortedSuggestions] = useState(suggestions);
@@ -53,6 +55,7 @@ export function TagInput({
             chosenTags={tags}
             handleSaveButtonClick={handleSaveButtonClick}
             setSearchValue={setSearchValue}
+            saveButtonStyles={saveButtonStyles}
           />
         ) : (
           <Tags tags={tags} handleRemoveTagClick={handleRemoveTagClick} />
