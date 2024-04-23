@@ -3,7 +3,7 @@ import styles from './index.module.css';
 
 import { TextInput } from './components/TextInput';
 import { Suggestions } from './components/Suggestions';
-import { Tag } from './components/Tag';
+import { Tags } from './components/Tags';
 
 import { sortTagsBySearchValue } from './utils/sortTagsBySearchValue';
 
@@ -35,9 +35,7 @@ export function TagInput({ allTags, placeholder, textInputStyles }) {
             setSearchValue={setSearchValue}
           />
         ) : (
-          chosenTags.map((tag) => (
-            <Tag title={tag} key={tag} setChosenTags={setChosenTags} />
-          ))
+          <Tags tags={chosenTags} setChosenTags={setChosenTags} />
         )}
       </div>
     </div>

@@ -1,0 +1,38 @@
+.tag {
+  border: 1px solid #b6b6b6;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+  padding: 8px 12px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tagTitle {
+  font-weight: 600;
+}
+
+.tagXButton {
+  color: #b6b6b6;
+  background-color: inherit;
+  border: medium none;
+  border-spacing: 0;
+  font-size: 1.5rem;
+  line-height: 1.2rem;
+  font-weight: normal;
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.tagXButton::after {
+  display: inline-block;
+  content: '\00d7';
+  position: absolute;
+}

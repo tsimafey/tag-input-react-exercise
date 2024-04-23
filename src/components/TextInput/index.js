@@ -20,7 +20,7 @@ export function TextInput({
       />
       {searchValue ? (
         <div className={styles.clearButtonWrapper}>
-          <button className={styles.clearButton} onClick={() => null}></button>
+          <button className={styles.clearButton} onClick={() => null} />
         </div>
       ) : (
         false
