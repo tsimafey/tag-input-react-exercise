@@ -1,5 +1,5 @@
-import React, { TagInput } from "tag-input-react-exercise";
-import "./App.css";
+import React, { TagInput } from 'tag-input-react-exercise';
+import './App.css';
 
 function App() {
   return (
