@@ -34,9 +34,11 @@ export function TagInput({
 
   useEffect(() => {
     if (searchValue) {
-      setSortedSuggestions([
-        ...sortSuggestionsBySearchValue(searchValue, suggestions),
-      ]);
+      setSortedSuggestions(
+        sortSuggestionsBySearchValue(searchValue, suggestions),
+      );
+    } else {
+      setSortedSuggestions([]);
     }
   }, [searchValue]);
 

@@ -13,7 +13,7 @@ export function TagItem({ title, handleRemoveTagClick }) {
   };
 
   return (
-    <div className={styles.tag}>
+    <div className={styles.tag} data-testid="tag-item">
       <span className={styles.tagTitle}>{title}</span>
       <button
         className={styles.tagXButton}

@@ -46,8 +46,8 @@ render(<App />, document.getElementById('root'));
 | [`handleSaveButtonClick`](#handleSaveButtonClick) | `Function`      | `undefined` | Function called when the user clicks to Save Button after he chose tags (required). |
 | [`handleRemoveTagClick`](#handleRemoveTagClick)   | `Function`      | `undefined` | Function called when the user clicks to Close icon of a Tag item (required).        |
 | [`placeholder`](#placeholder)                     | `String`        | `''`        | The placeholder shown for the input.                                                |
-| [`textInputStyles`](#textInputStyles)             | `Styles Object` | `{}`        | The object which rewrites the default text input styles. 
-| [`saveButtonStyles`](#saveButtonStyles)             | `Styles Object` | `{}`        | The object which rewrites the default Save button styles.                                 |
+| [`textInputStyles`](#textInputStyles)             | `Styles Object` | `{}`        | The object which rewrites the default text input styles.                            |
+| [`saveButtonStyles`](#saveButtonStyles)           | `Styles Object` | `{}`        | The object which rewrites the default Save button styles.                           |
 
 ### tags
 

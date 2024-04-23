@@ -11,7 +11,7 @@ Suggestions.propTypes = {
   chosenTags: PropTypes.arrayOf(PropTypes.string),
   setSearchValue: PropTypes.func.isRequired,
   handleSaveButtonClick: PropTypes.func.isRequired,
-  saveButtonStyles: PropTypes.shape(),
+  saveButtonStyles: PropTypes.objectOf(PropTypes.string),
 };
 
 export function Suggestions({
@@ -19,7 +19,7 @@ export function Suggestions({
   chosenTags,
   setSearchValue,
   handleSaveButtonClick,
-  saveButtonStyles,
+  saveButtonStyles = {},
 }) {
   const [newChosenTags, setNewChosenTags] = useState(chosenTags);
 
@@ -42,7 +42,7 @@ export function Suggestions({
       <button
         onClick={handleButtonClick}
         className={styles.suggestionsSaveButton}
-        styles={saveButtonStyles}
+        style={saveButtonStyles}
       >
         Save
       </button>

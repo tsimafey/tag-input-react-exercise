@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TextInput.module.css';
 
-// import { ReactComponent as SearchIcon } from '../../assets/search.svg';
 import searchIcon from '../../assets/search.svg';
 
 TextInput.propTypes = {
   searchValue: PropTypes.string.isRequired,
   setSearchValue: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  textInputStyles: PropTypes.shape(),
+  textInputStyles: PropTypes.objectOf(PropTypes.string),
 };
 
 export function TextInput({
@@ -36,7 +35,7 @@ export function TextInput({
         className={styles.textInput}
         style={textInputStyles}
       />
-      {searchValue ? (
+      {searchValue && (
         <div className={styles.clearButtonWrapper}>
           <button
             className={styles.clearButton}
@@ -44,8 +43,6 @@ export function TextInput({
             aria-label="Reset button"
           />
         </div>
-      ) : (
-        false
       )}
     </div>
   );

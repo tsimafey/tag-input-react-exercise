@@ -5,11 +5,25 @@ import '@testing-library/jest-dom';
 import { TagItem } from './index';
 
 describe('TagItem Component', () => {
-  test('renders the TagItem component', () => {
+  const title = 'Tag Title';
+  const handleRemoveTagClick = jest.fn();
+
+  afterEach(() => {
+    handleRemoveTagClick.mockClear();
+  });
+
+  test('renders tag title', () => {
     const { getByText } = render(
-      <TagItem title="test tag" handleRemoveTagClick={() => null} />,
+      <TagItem title={title} handleRemoveTagClick={handleRemoveTagClick} />,
     );
-    const tagComponent = getByText('test tag');
-    expect(tagComponent).toBeInTheDocument();
+    expect(getByText(title)).toBeInTheDocument();
+  });
+
+  test('calls handleRemoveTagClick when X button is clicked', () => {
+    const { getByLabelText } = render(
+      <TagItem title={title} handleRemoveTagClick={handleRemoveTagClick} />,
+    );
+    fireEvent.click(getByLabelText('Remove tag'));
+    expect(handleRemoveTagClick).toHaveBeenCalledWith(title);
   });
 });
