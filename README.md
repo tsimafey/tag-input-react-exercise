@@ -1,5 +1,25 @@
 # Tag Input
 
+## Dev
+
+The component is written in ES6 and uses [Rollup](https://rollupjs.org/) as its build tool.
+
+## Playground
+
+These are the steps to get the component and try it in playground:
+
+```
+git clone git@github.com:tsimafey/tag-input-react-exercise.git
+cd tag-input-react-exercise
+npm install
+cd playground
+npm install
+cd ..
+npm run dev
+```
+
+open [http://localhost:3000](http://localhost:3000)
+
 ## Usage
 
 Here's a sample implementation that initializes the component with a list of initial `tags` list. Apart from this, there are multiple events, handlers for which need to be set. For more details, go through the [API](#Options).
@@ -11,14 +31,17 @@ import './App.css';
 
 const TAGS = [
   {
+    id: '1',
     title: 'Maryla Rodowicz',
     score: 40,
   },
   {
+    id: '2',
     title: 'Odmrażanie trupa',
     score: 35,
   },
   {
+    id: '3',
     title: 'Festiwal w Opolu',
     score: 32,
   },
@@ -117,23 +140,3 @@ let saveButtonStyles = {
   borderRadius: '3px',
 };
 ```
-
-## Dev
-
-The component is written in ES6 and uses [Rollup](https://rollupjs.org/) as its build tool.
-
-## Playground
-
-These are the steps to get the component and try it in playground:
-
-```
-git clone git@github.com:tsimafey/tag-input-react-exercise.git
-cd tag-input-react-exercise
-npm install
-cd playground
-npm install
-cd ..
-npm run dev
-```
-
-open [http://localhost:3000](http://localhost:3000)
