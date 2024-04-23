@@ -3,6 +3,13 @@ import styles from './Suggestions.module.css';
 
 import { SuggestionItem } from '../SuggestionItem';
 
+Suggestions.propTypes = {
+  list: PropTypes.arrayOf(shape({ title: string, score: number })),
+  chosenTags: PropTypes.arrayOf(string),
+  setSearchValue: PropTypes.func.isRequired,
+  handleSaveButtonClick: PropTypes.func.isRequired,
+};
+
 export function Suggestions({
   list,
   chosenTags,

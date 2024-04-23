@@ -1,7 +1,12 @@
 import React from 'react';
-import styles from './Tag.module.css';
+import styles from './TagItem.module.css';
 
-export function Tag({ title, handleRemoveTagClick }) {
+TagItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  handleRemoveTagClick: PropTypes.func.isRequired,
+};
+
+export function TagItem({ title, handleRemoveTagClick }) {
   const handleXClick = () => {
     handleRemoveTagClick(title);
   };

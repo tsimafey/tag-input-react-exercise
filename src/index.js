@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styles from './index.module.css';
 
 import { TextInput } from './components/TextInput';
@@ -6,6 +7,15 @@ import { Suggestions } from './components/Suggestions';
 import { Tags } from './components/Tags';
 
 import { sortSuggestionsBySearchValue } from './utils/sortSuggestionsBySearchValue';
+
+TagInput.propTypes = {
+  tags: PropTypes.arrayOf(string),
+  suggestions: PropTypes.arrayOf(shape({ title: string, score: number })),
+  handleSaveButtonClick: PropTypes.func.isRequired,
+  handleRemoveTagClick: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  textInputStyles: PropTypes.shape(),
+};
 
 export function TagInput({
   tags = [],

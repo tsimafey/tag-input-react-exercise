@@ -52,5 +52,8 @@
     "rollup": "^2.75.7",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1"
   }
 }

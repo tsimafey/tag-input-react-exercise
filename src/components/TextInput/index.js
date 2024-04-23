@@ -1,5 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './TextInput.module.css';
+
+TextInput.propTypes = {
+  searchValue: PropTypes.string.isRequired,
+  setSearchValue: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  textInputStyles: PropTypes.shape(),
+};
 
 export function TextInput({
   placeholder,
