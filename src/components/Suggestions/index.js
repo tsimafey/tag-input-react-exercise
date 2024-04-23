@@ -4,25 +4,25 @@ import styles from './Suggestions.module.css';
 import { SuggestionItem } from '../SuggestionItem';
 
 export function Suggestions({
-  allTags,
+  list,
   chosenTags,
-  setChosenTags,
   setSearchValue,
+  handleSaveButtonClick,
 }) {
   const [newChosenTags, setNewChosenTags] = useState(chosenTags);
 
   const handleButtonClick = () => {
-    setChosenTags(newChosenTags);
+    handleSaveButtonClick(newChosenTags);
     setSearchValue('');
   };
 
   return (
     <div>
-      {allTags.map((tag) => (
+      {list.map((suggestion) => (
         <SuggestionItem
-          key={tag.title}
-          title={tag.title}
-          score={tag.score}
+          key={suggestion.title}
+          title={suggestion.title}
+          score={suggestion.score}
           chosenTags={newChosenTags}
           setChosenTags={setNewChosenTags}
         />

@@ -47,6 +47,7 @@
   text-indent: 0;
   width: 1rem;
   height: 1rem;
+  cursor: pointer;
 }
 
 .clearButton::after {

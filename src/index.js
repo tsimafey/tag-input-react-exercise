@@ -5,16 +5,24 @@ import { TextInput } from './components/TextInput';
 import { Suggestions } from './components/Suggestions';
 import { Tags } from './components/Tags';
 
-import { sortTagsBySearchValue } from './utils/sortTagsBySearchValue';
+import { sortSuggestionsBySearchValue } from './utils/sortSuggestionsBySearchValue';
 
-export function TagInput({ allTags, placeholder, textInputStyles }) {
+export function TagInput({
+  tags = [],
+  suggestions = [],
+  handleSaveButtonClick,
+  handleRemoveTagClick,
+  placeholder = '',
+  textInputStyles = {},
+}) {
   const [searchValue, setSearchValue] = useState('');
-  const [chosenTags, setChosenTags] = useState([]);
-  const [sortedTags, setSortedTags] = useState(allTags);
+  const [sortedSuggestions, setSortedSuggestions] = useState(suggestions);
 
   useEffect(() => {
     if (searchValue) {
-      setSortedTags([...sortTagsBySearchValue(searchValue, allTags)]);
+      setSortedSuggestions([
+        ...sortSuggestionsBySearchValue(searchValue, suggestions),
+      ]);
     }
   }, [searchValue]);
 
@@ -29,13 +37,13 @@ export function TagInput({ allTags, placeholder, textInputStyles }) {
       <div className={styles.tagInputBottomContainer}>
         {searchValue ? (
           <Suggestions
-            allTags={sortedTags}
-            chosenTags={chosenTags}
-            setChosenTags={setChosenTags}
+            list={sortedSuggestions}
+            chosenTags={tags}
+            handleSaveButtonClick={handleSaveButtonClick}
             setSearchValue={setSearchValue}
           />
         ) : (
-          <Tags tags={chosenTags} setChosenTags={setChosenTags} />
+          <Tags tags={tags} handleRemoveTagClick={handleRemoveTagClick} />
         )}
       </div>
     </div>

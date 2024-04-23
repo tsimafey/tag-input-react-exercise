@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Tag.module.css';
 
-export function Tag({ title, setChosenTags }) {
+export function Tag({ title, handleRemoveTagClick }) {
   const handleXClick = () => {
-    setChosenTags((prev) => prev.filter((tag) => tag !== title));
+    handleRemoveTagClick(title);
   };
 
   return (

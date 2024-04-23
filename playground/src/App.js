@@ -1,5 +1,6 @@
 import React, { TagInput } from 'tag-input-react-exercise';
 import './App.css';
+import { useState } from 'react';
 
 const TAGS = [
   {
@@ -37,9 +38,24 @@ const TAGS = [
 ];
 
 function App() {
+  const [tags, setTags] = useState([]);
+
+  const handleSaveButtonClick = (tags) => {
+    setTags(tags);
+  };
+
+  const handleRemoveTagClick = (title) => {
+    setTags((prev) => prev.filter((tag) => tag !== title));
+  };
+
   return (
     <div className="App">
-      <TagInput allTags={TAGS} />
+      <TagInput
+        suggestions={TAGS}
+        tags={tags}
+        handleSaveButtonClick={handleSaveButtonClick}
+        handleRemoveTagClick={handleRemoveTagClick}
+      />
     </div>
   );
 }

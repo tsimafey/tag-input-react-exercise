@@ -1,4 +1,4 @@
-export const sortTagsBySearchValue = (searchValue, tags) => {
+export const sortSuggestionsBySearchValue = (searchValue, tags) => {
   const tagsCopy = [...tags];
   const searchValueLowerCase = searchValue.toLowerCase();
 
