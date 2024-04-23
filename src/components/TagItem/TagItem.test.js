@@ -8,7 +8,7 @@ describe('TagItem Component', () => {
   const tag = {
     id: '1',
     title: 'Tag Title',
-    score: 0
+    score: 0,
   };
   const handleRemoveTagClick = jest.fn();
 

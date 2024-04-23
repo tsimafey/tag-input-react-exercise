@@ -8,7 +8,7 @@ describe('SuggestionItem Component', () => {
   const suggestion = {
     id: '1',
     title: 'Test Title',
-    score: 10
+    score: 10,
   };
   const setChosenTagsMock = jest.fn();
 
@@ -37,22 +37,26 @@ describe('SuggestionItem Component', () => {
       'input[type="checkbox"]',
     );
     fireEvent.click(checkbox);
-    expect(setChosenTagsMock).toHaveBeenCalledWith([{
-      id: '1',
-      title: 'Test Title',
-      score: 10
-    }]);
+    expect(setChosenTagsMock).toHaveBeenCalledWith([
+      {
+        id: '1',
+        title: 'Test Title',
+        score: 10,
+      },
+    ]);
   });
 
   test('calls setChosenTags with correct arguments when checkbox clicked twice', () => {
     const { getByTestId } = render(
       <SuggestionItem
         suggestion={suggestion}
-        chosenTags={[{
-          id: '1',
-          title: 'Test Title',
-          score: 10
-        }]}
+        chosenTags={[
+          {
+            id: '1',
+            title: 'Test Title',
+            score: 10,
+          },
+        ]}
         setChosenTags={setChosenTagsMock}
       />,
     );

@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './TagItem.module.css';
 
 TagItem.propTypes = {
-  tag: PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+  tag: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+  }),
   handleRemoveTagClick: PropTypes.func.isRequired,
 };
 

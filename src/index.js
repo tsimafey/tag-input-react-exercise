@@ -10,10 +10,18 @@ import { sortSuggestionsBySearchValue } from './utils/sortSuggestionsBySearchVal
 
 TagInput.propTypes = {
   tags: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
   ),
   suggestions: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
   ),
   handleSaveButtonClick: PropTypes.func.isRequired,
   handleRemoveTagClick: PropTypes.func.isRequired,

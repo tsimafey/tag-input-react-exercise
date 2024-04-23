@@ -6,10 +6,18 @@ import { SuggestionItem } from '../SuggestionItem';
 
 Suggestions.propTypes = {
   list: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
   ),
   chosenTags: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
   ),
   setSearchValue: PropTypes.func.isRequired,
   handleSaveButtonClick: PropTypes.func.isRequired,

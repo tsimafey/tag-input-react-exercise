@@ -19,7 +19,7 @@ describe('TextInput Component', () => {
         handleSearchReset={handleSearchReset}
         handleInputChange={handleInputChange}
         textInputStyles={textInputStyles}
-      />
+      />,
     );
     expect(getByPlaceholderText(placeholder)).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ describe('TextInput Component', () => {
         handleSearchReset={handleSearchReset}
         handleInputChange={handleInputChange}
         textInputStyles={textInputStyles}
-      />
+      />,
     );
     expect(getByAltText('Search Icon')).toBeInTheDocument();
   });
@@ -45,7 +45,7 @@ describe('TextInput Component', () => {
         handleSearchReset={handleSearchReset}
         handleInputChange={handleInputChange}
         textInputStyles={textInputStyles}
-      />
+      />,
     );
     expect(getByDisplayValue(searchValue)).toBeInTheDocument();
   });
@@ -58,7 +58,7 @@ describe('TextInput Component', () => {
         handleSearchReset={handleSearchReset}
         handleInputChange={handleInputChange}
         textInputStyles={textInputStyles}
-      />
+      />,
     );
     fireEvent.click(getByLabelText('Reset button'));
     expect(handleSearchReset).toHaveBeenCalledTimes(1);
@@ -72,9 +72,11 @@ describe('TextInput Component', () => {
         handleSearchReset={handleSearchReset}
         handleInputChange={handleInputChange}
         textInputStyles={textInputStyles}
-      />
+      />,
     );
-    fireEvent.change(getByPlaceholderText(placeholder), { target: { value: 'New Value' } });
+    fireEvent.change(getByPlaceholderText(placeholder), {
+      target: { value: 'New Value' },
+    });
     expect(handleInputChange).toHaveBeenCalledTimes(1);
   });
 });

@@ -6,7 +6,11 @@ import { TagItem } from '../TagItem';
 
 Tags.propTypes = {
   tags: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
   ),
   handleRemoveTagClick: PropTypes.func.isRequired,
 };

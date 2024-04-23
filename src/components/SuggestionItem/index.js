@@ -3,22 +3,26 @@ import PropTypes from 'prop-types';
 import styles from './SuggestionItem.module.css';
 
 SuggestionItem.propTypes = {
-  suggestion: PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+  suggestion: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+  }),
   chosenTags: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.string, title: PropTypes.string, score: PropTypes.number }),
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      score: PropTypes.number.isRequired,
+    }),
   ),
   setChosenTags: PropTypes.func.isRequired,
 };
 
-export function SuggestionItem({
-  suggestion,
-  chosenTags = [],
-  setChosenTags,
-}) {
-  const checked = chosenTags.find((tag) => tag.id === suggestion.id);
+export function SuggestionItem({ suggestion, chosenTags = [], setChosenTags }) {
+  const isChecked = chosenTags.some((tag) => tag.id === suggestion.id) || false;
 
   const handleCheckboxChange = () => {
-    if (checked) {
+    if (isChecked) {
       removeTag(suggestion.id);
     } else {
       addTag(suggestion);
@@ -43,7 +47,7 @@ export function SuggestionItem({
       <input
         type="checkbox"
         id={suggestion.id}
-        checked={checked}
+        checked={isChecked}
         onChange={handleCheckboxChange}
       />
       <label htmlFor={suggestion.id} className={styles.suggestionItemTitle}>
