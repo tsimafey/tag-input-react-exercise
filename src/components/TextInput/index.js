@@ -10,7 +10,7 @@ TextInput.propTypes = {
 };
 
 export function TextInput({
-  placeholder,
+  placeholder = 'Enter Tag name',
   searchValue,
   setSearchValue,
   textInputStyles,
@@ -32,7 +32,7 @@ export function TextInput({
       />
       {searchValue ? (
         <div className={styles.clearButtonWrapper}>
-          <button className={styles.clearButton} onClick={handleSearchReset} />
+          <button className={styles.clearButton} onClick={handleSearchReset} aria-label='Reset button' />
         </div>
       ) : (
         false

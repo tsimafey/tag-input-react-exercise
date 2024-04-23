@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Suggestions.module.css';
 
 import { SuggestionItem } from '../SuggestionItem';
 
 Suggestions.propTypes = {
-  list: PropTypes.arrayOf(shape({ title: string, score: number })),
-  chosenTags: PropTypes.arrayOf(string),
+  list: PropTypes.arrayOf(
+    PropTypes.shape({ title: PropTypes.string, score: PropTypes.number }),
+  ),
+  chosenTags: PropTypes.arrayOf(PropTypes.string),
   setSearchValue: PropTypes.func.isRequired,
   handleSaveButtonClick: PropTypes.func.isRequired,
 };
 
 export function Suggestions({
-  list,
+  list = [],
   chosenTags,
   setSearchValue,
   handleSaveButtonClick,
@@ -24,7 +27,7 @@ export function Suggestions({
   };
 
   return (
-    <div>
+    <div data-testid='suggestions-container'>
       {list.map((suggestion) => (
         <SuggestionItem
           key={suggestion.title}
@@ -38,7 +41,7 @@ export function Suggestions({
         onClick={handleButtonClick}
         className={styles.suggestionsSaveButton}
       >
-        Zapisz
+        Save
       </button>
     </div>
   );

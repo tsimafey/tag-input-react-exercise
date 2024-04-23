@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './SuggestionItem.module.css';
 
 SuggestionItem.propTypes = {
   title: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
-  chosenTags: PropTypes.arrayOf(string),
+  chosenTags: PropTypes.arrayOf(PropTypes.string),
   setChosenTags: PropTypes.func.isRequired,
 };
 
-export function SuggestionItem({ title, score, chosenTags, setChosenTags }) {
+export function SuggestionItem({ title, score, chosenTags = [], setChosenTags }) {
   const checked = chosenTags.includes(title);
 
   const removeTag = () => {
