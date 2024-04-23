@@ -55,6 +55,7 @@
     "rollup-plugin-postcss": "^4.0.2"
   },
   "dependencies": {
+    "@rollup/plugin-image": "^3.0.3",
     "prop-types": "^15.8.1"
   }
 }

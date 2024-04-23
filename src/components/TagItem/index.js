@@ -15,7 +15,11 @@ export function TagItem({ title, handleRemoveTagClick }) {
   return (
     <div className={styles.tag}>
       <span className={styles.tagTitle}>{title}</span>
-      <button className={styles.tagXButton} onClick={handleXClick} aria-label="Remove tag" />
+      <button
+        className={styles.tagXButton}
+        onClick={handleXClick}
+        aria-label="Remove tag"
+      />
     </div>
   );
 }

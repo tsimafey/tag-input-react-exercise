@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TextInput.module.css';
 
+// import { ReactComponent as SearchIcon } from '../../assets/search.svg';
+import searchIcon from '../../assets/search.svg';
+
 TextInput.propTypes = {
   searchValue: PropTypes.string.isRequired,
   setSearchValue: PropTypes.func.isRequired,
@@ -21,6 +24,9 @@ export function TextInput({
 
   return (
     <div className={styles.textInputContainer}>
+      <div className={styles.searchIconWrapper}>
+        <img src={searchIcon} alt="Search Icon" />
+      </div>
       <input
         type="text"
         placeholder={placeholder}
@@ -32,7 +38,11 @@ export function TextInput({
       />
       {searchValue ? (
         <div className={styles.clearButtonWrapper}>
-          <button className={styles.clearButton} onClick={handleSearchReset} aria-label='Reset button' />
+          <button
+            className={styles.clearButton}
+            onClick={handleSearchReset}
+            aria-label="Reset button"
+          />
         </div>
       ) : (
         false

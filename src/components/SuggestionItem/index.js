@@ -9,7 +9,12 @@ SuggestionItem.propTypes = {
   setChosenTags: PropTypes.func.isRequired,
 };
 
-export function SuggestionItem({ title, score, chosenTags = [], setChosenTags }) {
+export function SuggestionItem({
+  title,
+  score,
+  chosenTags = [],
+  setChosenTags,
+}) {
   const checked = chosenTags.includes(title);
 
   const removeTag = () => {

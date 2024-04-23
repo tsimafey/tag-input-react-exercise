@@ -7,10 +7,7 @@ import { TextInput } from './index';
 describe('TextInput Component', () => {
   test('renders the TextInput component', () => {
     const { getByLabelText } = render(
-      <TextInput
-        searchValue=''
-        setSearchValue={() => null}
-      />,
+      <TextInput searchValue="" setSearchValue={() => null} />,
     );
     const textInputElement = getByLabelText('Enter Tag name');
     expect(textInputElement).toBeInTheDocument();
@@ -19,10 +16,7 @@ describe('TextInput Component', () => {
   test('calls onChange handler', () => {
     const onChangeMock = jest.fn();
     const { getByLabelText } = render(
-      <TextInput
-        searchValue=''
-        setSearchValue={onChangeMock}
-      />,
+      <TextInput searchValue="" setSearchValue={onChangeMock} />,
     );
     const textInputElement = getByLabelText('Enter Tag name');
     fireEvent.change(textInputElement, { target: { value: 'Test input' } });
@@ -32,9 +26,9 @@ describe('TextInput Component', () => {
   test('placeholder prop', () => {
     const { getByPlaceholderText } = render(
       <TextInput
-        searchValue=''
+        searchValue=""
         setSearchValue={() => null}
-        placeholder='Test placeholder'
+        placeholder="Test placeholder"
       />,
     );
     const textInputElement = getByPlaceholderText('Test placeholder');
@@ -43,10 +37,7 @@ describe('TextInput Component', () => {
 
   test('clearButton is absent if searchValue is empty string', () => {
     const { queryByLabelText } = render(
-      <TextInput
-        searchValue=''
-        setSearchValue={() => null}
-      />,
+      <TextInput searchValue="" setSearchValue={() => null} />,
     );
     const buttonElement = queryByLabelText('Reset button');
     expect(buttonElement).not.toBeInTheDocument();
@@ -54,10 +45,7 @@ describe('TextInput Component', () => {
 
   test('clearButton is present if searchValue is not empty', () => {
     const { getByLabelText } = render(
-      <TextInput
-        searchValue='test value'
-        setSearchValue={() => null}
-      />,
+      <TextInput searchValue="test value" setSearchValue={() => null} />,
     );
     const buttonElement = getByLabelText('Reset button');
     expect(buttonElement).toBeInTheDocument();

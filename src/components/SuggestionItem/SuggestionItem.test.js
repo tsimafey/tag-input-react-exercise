@@ -8,7 +8,7 @@ describe('SuggestionItem Component', () => {
   test('renders the SuggestionItem component', () => {
     const { getByText } = render(
       <SuggestionItem
-        title='Test title'
+        title="Test title"
         score={10}
         setChosenTags={() => null}
       />,

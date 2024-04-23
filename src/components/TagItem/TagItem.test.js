@@ -7,10 +7,7 @@ import { TagItem } from './index';
 describe('TagItem Component', () => {
   test('renders the TagItem component', () => {
     const { getByText } = render(
-      <TagItem
-        title='test tag'
-        handleRemoveTagClick={() => null}
-      />,
+      <TagItem title="test tag" handleRemoveTagClick={() => null} />,
     );
     const tagComponent = getByText('test tag');
     expect(tagComponent).toBeInTheDocument();

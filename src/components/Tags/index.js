@@ -11,7 +11,7 @@ Tags.propTypes = {
 
 export function Tags({ tags = [], handleRemoveTagClick }) {
   return (
-    <div className={styles.tagsContainer} data-testid='tags-container'>
+    <div className={styles.tagsContainer} data-testid="tags-container">
       {tags.map((tag) => (
         <TagItem
           title={tag}

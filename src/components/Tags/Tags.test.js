@@ -6,11 +6,7 @@ import { Tags } from './index';
 
 describe('Tags Component', () => {
   test('renders the Tags component', () => {
-    const { getByTestId } = render(
-      <Tags
-        handleRemoveTagClick={() => null}
-      />,
-    );
+    const { getByTestId } = render(<Tags handleRemoveTagClick={() => null} />);
     const tagsComponent = getByTestId('tags-container');
     expect(tagsComponent).toBeInTheDocument();
   });
